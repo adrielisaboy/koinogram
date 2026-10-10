@@ -4,17 +4,17 @@ Koinogram is a responsive React + TypeScript community experience for Christians
 
 ## Run the app
 
-Requirements: Node.js 22 and pnpm 11 (the tested package-manager pin is `pnpm@11.25.0`). From the project directory:
+Requirements: Node.js 22+ and npm. From the project directory:
 
 ```bash
-pnpm install
+npm install
 cp .env.example .env.local
-pnpm dev
+npm run dev
 ```
 
-Vite listens on `http://localhost:3000` (and binds `0.0.0.0:3000` in the managed Preview). Open `/` for the public landing page or `/app` to explore the connected sample application directly. All application routes support client-side navigation; `public/manus-routes.json` declares the page route set for the managed Preview.
+Vite listens on `http://localhost:3000`, or the next free port if 3000 is taken (it binds `0.0.0.0` in the managed Preview). Open `/` for the public landing page or `/app` to explore the connected sample application directly. All application routes support client-side navigation; `public/manus-routes.json` declares the page route set for the managed Preview.
 
-Run the production checks/build with `pnpm typecheck` and `pnpm build`. The compiled static assets are written to `dist/`.
+Run the production checks/build with `npm run typecheck` and `npm run build`. The compiled static assets are written to `dist/`.
 
 ## Environment and service mode
 
