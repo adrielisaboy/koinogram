@@ -12,7 +12,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Vite listens on `http://localhost:3000` (or the next free port if 3000 is taken) (and binds `0.0.0.0:3000` in the managed Preview). Open `/` for the public landing page or `/app` to explore the connected sample application directly. All application routes support client-side navigation; `public/manus-routes.json` declares the page route set for the managed Preview.
+Vite listens on `http://localhost:3000`, or the next free port if 3000 is taken (it binds `0.0.0.0` in the managed Preview). Open `/` for the public landing page or `/app` to explore the connected sample application directly. All application routes support client-side navigation; `public/manus-routes.json` declares the page route set for the managed Preview.
 
 Run the production checks/build with `npm run typecheck` and `npm run build`. The compiled static assets are written to `dist/`.
 
