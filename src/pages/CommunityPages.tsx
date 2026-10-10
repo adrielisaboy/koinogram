@@ -1,0 +1,26 @@
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, HeartHandshake, ShieldCheck, Users } from 'lucide-react';
+import { useKoinogram } from '../app/AppProvider';
+import { CommunityCard } from '../components/CommunityCard';
+import { PostCard } from '../components/PostCard';
+import { EmptyState } from '../components/EmptyState';
+
+const categories = ['All', 'Bible study', 'Prayer', 'Community', 'Service'];
+
+export function CommunitiesPage() {
+  const { snapshot } = useKoinogram();
+  const [filter, setFilter] = useState('All'); const [query, setQuery] = useState('');
+  const filtered = snapshot.communities.filter((community) => (filter === 'All' || community.category === filter) && `${community.name} ${community.description}`.toLowerCase().includes(query.toLowerCase()));
+  return <div className="communities-page"><section className="community-hero"><div><span className="eyebrow">SMALL CIRCLES, ROOM TO GROW</span><h2>Find your kind<br /><em>of community.</em></h2><p>Places to learn, ask, pray, and do good together. Join only what feels right.</p></div><span className="community-hero-mark">✳</span></section><div className="community-tools"><label className="sr-only" htmlFor="community-search">Search communities</label><input id="community-search" className="field-input" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search communities…" /><div className="search-categories" role="tablist" aria-label="Community category">{categories.map((item) => <button key={item} role="tab" aria-selected={filter === item} className={filter === item ? 'filter-tab active' : 'filter-tab'} onClick={() => setFilter(item)}>{item}</button>)}</div></div><div className="community-section-title"><span className="eyebrow">{filter === 'All' ? 'A PLACE FOR EVERY SEASON' : filter.toUpperCase()}</span><span>{filtered.length} spaces</span></div>{filtered.length ? <div className="community-grid">{filtered.map((community) => <CommunityCard key={community.id} community={community} />)}</div> : <EmptyState icon={<Users size={22} />} title="No circles found yet." copy="Try a different search or browse all communities." action={<button className="button button-outline" onClick={() => { setQuery(''); setFilter('All'); }}>Show all communities</button>} />}<div className="community-guidelines-prompt"><ShieldCheck size={17} /><span>Every community follows our promise to care for one another.</span><Link to="/guidelines">Read guidelines <ArrowRight size={14} /></Link></div></div>;
+}
+
+export function CommunityPage() {
+  const { communityId = '' } = useParams();
+  const { snapshot, services, run, notify } = useKoinogram();
+  const community = snapshot.communities.find((item) => item.id === communityId);
+  if (!community) return <EmptyState icon={<Users size={22} />} title="This community isn’t here." copy="It may have changed or the link may be out of date." action={<Link to="/app/communities" className="button button-primary">Browse communities</Link>} />;
+  const posts = snapshot.posts.filter((post) => post.communityId === communityId);
+  async function toggle() { await run(() => services.communities.toggleMembership(community!.id)); notify(community!.joined ? `You left ${community!.name}.` : `You joined ${community!.name}.`); }
+  return <div className="community-detail"><Link to="/app/communities" className="back-link"><ArrowLeft size={15} /> All communities</Link><section className="community-detail-hero"><div className="community-detail-art"><span>{community.name.split(/\s+/).map((word) => word[0]).slice(0, 2).join('')}</span></div><div className="community-detail-copy"><span className="eyebrow">{community.category.toUpperCase()} · A SPACE TO GROW</span><h2>{community.name}</h2><p>{community.description}</p><div className="community-member-count"><Users size={15} /> {community.memberCount.toLocaleString()} members</div><button className={`button ${community.joined ? 'button-outline' : 'button-primary'}`} onClick={() => void toggle()}>{community.joined ? 'You’re a member' : 'Join community'} <ArrowUpRight size={15} /></button></div></section><div className="community-detail-grid"><section className="community-feed"><div className="section-title-row"><h3><BookOpen size={17} /> Community feed</h3><span>Shared with this circle</span></div>{posts.length ? posts.map((post) => <PostCard key={post.id} post={post} />) : <EmptyState icon={<HeartHandshake size={22} />} title="The first conversation is yours." copy="Share a question, a moment, or something you’re learning." action={community.joined ? <Link to="/app/create" className="button button-primary">Share a thought</Link> : <button className="button button-primary" onClick={() => void toggle()}>Join to take part</button>} />}</section><aside className="community-about"><span className="eyebrow">A FEW THINGS TO KNOW</span><h3>How we care for each other</h3><ul>{community.rules.map((rule) => <li key={rule}><span>✳</span>{rule}</li>)}</ul><div className="community-mod-note"><ShieldCheck size={16} /><span>See something that doesn’t feel right? <Link to="/app/safety">Visit Safety & support</Link>.</span></div><Link to="/guidelines" className="text-link">Full community guidelines <ArrowRight size={14} /></Link></aside></div></div>;
+}

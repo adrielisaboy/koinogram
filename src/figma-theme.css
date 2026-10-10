@@ -1,0 +1,376 @@
+/* Koinogram Figma system: Inter UI, Lora for Scripture, quiet surfaces and clear blue actions. */
+:root {
+  color-scheme: light;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #142840;
+  background: #fff;
+  --ink: #142840;
+  --ink-soft: #263f5b;
+  --paper: #fff;
+  --white: #fff;
+  --mist: #eaf2fc;
+  --sky: #285ea8;
+  --brass: #b58b43;
+  --charcoal: #142840;
+  --muted: #637287;
+  --line: #e3e9f0;
+  --soft-line: #edf1f6;
+  --serif: 'Lora', Georgia, serif;
+  --shadow: 0 4px 20px rgba(20, 40, 64, .03);
+  --surface-soft: #f6f8fb;
+  --surface-raised: #fff;
+  --surface-control: #fff;
+  --status-success: #247a5b;
+  --status-danger: #b63d4d;
+  --mark-symbol: #fff;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  color: #ecf2fa;
+  background: #142337;
+  --ink: #ecf2fa;
+  --ink-soft: #d4e0ef;
+  --paper: #142337;
+  --white: #192a3e;
+  --mist: #213b5b;
+  --sky: #93acff;
+  --brass: #dabb7d;
+  --charcoal: #ecf2fa;
+  --muted: #a8b6ca;
+  --line: #2a3b50;
+  --soft-line: #22354a;
+  --shadow: 0 4px 20px rgba(0, 0, 0, .18);
+  --surface-soft: #17283d;
+  --surface-raised: #192a3e;
+  --surface-control: #172a40;
+  --status-success: #8fd6b8;
+  --status-danger: #ffa7b1;
+  --mark-symbol: #fff;
+}
+
+body { color: var(--ink); background: var(--paper); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
+button, input, textarea, select { font-family: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid color-mix(in srgb, var(--sky) 55%, transparent); outline-offset: 3px; }
+::selection { color: #fff; background: var(--sky); }
+
+/* Wordmark, controls, and legible type scale */
+.brand-mark-bg { fill: var(--sky); }
+.brand-mark-symbol { stroke: var(--mark-symbol); }
+.brand-light .brand-mark-bg { fill: #fff; }
+.brand-light .brand-mark-symbol { --mark-symbol: #142840; }
+.brand-word { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-weight: 700; letter-spacing: -.045em; }
+.eyebrow { color: var(--muted); font-size: 12px; line-height: 18px; font-weight: 600; letter-spacing: .08em; }
+.tiny-label { color: var(--muted); font-size: 12px; line-height: 18px; letter-spacing: .06em; }
+.button { min-height: 44px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.button-primary { color: #fff; background: var(--sky); box-shadow: none; }
+.button-primary:hover { background: color-mix(in srgb, var(--sky) 88%, #142840); box-shadow: none; }
+.button-outline { color: var(--ink); border-color: var(--line); background: var(--surface-raised); }
+.button-outline:hover, .button-quiet:hover { color: var(--ink); border-color: var(--line); background: var(--surface-soft); }
+.button-quiet { color: var(--muted); }
+.button-light { color: #142840; background: #fff; }
+.button-light:hover { color: #142840; background: #eaf2fc; }
+.button-small { min-height: 36px; border-radius: 8px; font-size: 12px; }
+.field-label { color: var(--ink); font-size: 14px; line-height: 20px; }
+.field-label span { color: var(--muted); font-size: 12px; }
+.field-input, .composer-card textarea, .dialog-card textarea { min-height: 48px; border-color: var(--line); border-radius: 12px; color: var(--ink); background: var(--surface-control); font-size: 15px; line-height: 1.5; }
+.field-input::placeholder, textarea::placeholder { color: var(--muted); opacity: .8; }
+.field-input:focus, .composer-card textarea:focus, .dialog-card textarea:focus { border-color: var(--sky); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sky) 16%, transparent); }
+.field-error { color: var(--status-danger); font-size: 14px; }
+
+/* Figma Cover / Brand: a clean masthead above a bounded ink-blue photo hero. */
+.landing-page { color: var(--ink); background: var(--paper); }
+.landing-nav { width: min(100%, 1280px); height: 76px; padding-inline: clamp(20px, 5vw, 64px); }
+.landing-nav nav a, .nav-login { color: var(--muted); font-size: 14px; }
+.landing-nav-actions { gap: 20px; }
+.button-nav { min-height: 42px; padding-inline: 16px; border-radius: 8px; font-size: 13px; }
+.landing-hero { grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); gap: clamp(24px, 4.2vw, 56px); width: min(calc(100% - 48px), 1120px); min-height: 430px; padding: clamp(30px, 4.8vw, 60px); margin: 8px auto 72px; overflow: hidden; border: 0; border-radius: 20px; color: #fff; background: #142840; box-shadow: none; }
+.hero-copy { padding: 0; }
+.hero-copy .eyebrow { color: #c9d6e5; }
+.hero-copy h1 { max-width: 520px; margin: 18px 0 16px; color: #fff; font-family: 'Inter', system-ui, sans-serif; font-size: clamp(38px, 4.6vw, 56px); font-weight: 600; line-height: 1.12; letter-spacing: -.045em; }
+.hero-copy h1 span { color: #dce9fa; }
+.hero-subtitle { max-width: 470px; color: #e1e9f2; font-size: 16px; line-height: 1.6; }
+.hero-pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.hero-pill-list span { display: inline-flex; align-items: center; min-height: 30px; padding: 0 11px; border: 1px solid rgba(231, 240, 251, .35); border-radius: 999px; color: #eef4fb; font-size: 12px; line-height: 18px; }
+.hero-actions { gap: 10px; margin-top: 24px; }
+.hero-art { min-height: 310px; border-radius: 12px; background: #203c5b; box-shadow: none; }
+.hero-art::before, .hero-art::after { display: none; }
+.hero-art > img { border-radius: 12px; }
+.hero-photo-caption { position: absolute; right: 12px; bottom: 12px; left: 12px; padding: 9px 11px; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; color: #fff; background: rgba(20, 35, 55, .72); font-size: 12px; line-height: 18px; backdrop-filter: blur(6px); }
+.landing-intro, .landing-story { max-width: 1120px; }
+.landing-intro { border-color: var(--line); }
+.landing-intro h2, .story-copy h2, .landing-final h2, .document-content h1, .document-content section h2, .auth-aside-copy h2, .auth-form-wrap h1, .onboarding-step h1, .app-shell :is(h1, h2, h3), .not-found-page h1 { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -.035em; }
+.landing-intro h2, .story-copy h2 { font-size: clamp(30px, 3.4vw, 42px); line-height: 1.25; }
+.landing-intro h2 em, .story-copy h2 em { color: var(--sky); }
+.section-lead, .story-copy p, .landing-final > p { font-size: 15px; line-height: 1.55; }
+.intro-values strong { font-size: 15px; }
+.intro-values p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.value-icon { color: var(--sky); background: var(--mist); }
+.story-panel { border-color: var(--line); border-radius: 20px; background: var(--surface-soft); }
+.story-quote { font-family: 'Inter', system-ui, sans-serif; font-size: 22px; line-height: 1.5; }
+.story-copy h2 em { color: var(--sky); }
+.landing-final { background: #142840; }
+.landing-final h2 { font-size: clamp(32px, 3.6vw, 46px); }
+
+/* Main app shell and consistent navigation states */
+.app-shell { color: var(--ink); background: var(--paper); }
+.side-rail, .right-rail { border-color: var(--line); background: var(--surface-raised); }
+.rail-label, .mock-rail-label, .right-foot { color: var(--muted); }
+.rail-link { min-height: 44px; border-radius: 12px; color: var(--muted); font-size: 14px; }
+.rail-link:hover { color: var(--sky); background: var(--surface-soft); }
+.rail-link.is-active { color: var(--sky); background: var(--mist); font-weight: 600; }
+.rail-link.is-active svg { color: var(--sky); }
+.nav-badge { background: var(--sky); font-size: 12px; }
+.rail-create { min-height: 44px; border-color: var(--line); color: var(--sky); background: var(--surface-raised); font-size: 13px; }
+.rail-help-card, .rail-note { border-color: var(--line); border-radius: 20px; background: var(--surface-soft); }
+.rail-help-card strong, .rail-note p { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 600; }
+.rail-help-card > span:nth-of-type(2), .rail-help-card > a { color: var(--muted); font-size: 12px; }
+.rail-note .eyebrow { font-size: 12px; }
+.rail-note p { font-family: 'Lora', Georgia, serif; font-size: 20px; font-weight: 400; line-height: 1.5; }
+.rail-note small { color: var(--muted); font-size: 12px; }
+.app-topbar { border-color: var(--line); }
+.app-topbar .eyebrow { font-size: 12px; }
+.app-topbar h1 { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 28px; font-weight: 600; line-height: 42px; letter-spacing: -.035em; }
+.search-shortcut { min-height: 44px; border-color: var(--line); color: var(--muted); background: var(--surface-raised); font-size: 13px; }
+.search-shortcut:hover { border-color: var(--sky); background: var(--surface-raised); }
+.page-content { padding-top: 28px; }
+.mobile-topbar { border-color: var(--line); color: var(--ink); background: color-mix(in srgb, var(--paper) 94%, transparent); }
+.mobile-page-title { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 600; }
+.mobile-topbar .icon-button { min-width: 44px; min-height: 44px; color: var(--muted); }
+.mobile-topbar .icon-button:hover { color: var(--sky); background: var(--mist); }
+.mobile-bottom-nav { border-color: var(--line); background: color-mix(in srgb, var(--surface-raised) 96%, transparent); }
+.mobile-nav-item { min-width: 54px; min-height: 48px; color: var(--muted); font-size: 11px; }
+.mobile-nav-item.is-active { color: var(--sky); }
+.mobile-compose { width: 44px; height: 44px; border-radius: 12px; color: #fff; background: var(--sky); box-shadow: none; }
+
+/* Feed cards, post types and audience states */
+.post-card, .quick-compose, .composer-card, .feed-side-card, .empty-state, .community-card, .profile-summary, .profile-edit-card, .community-detail-hero, .notification-list, .settings-group, .settings-profile-card, .privacy-setting-card, .moderation-item, .dialog-card, .onboarding-card, .auth-form-wrap, .explore-search { border-color: var(--line); border-radius: 20px; background: var(--surface-raised); box-shadow: none; }
+.post-card { padding: 20px 20px 0; margin-bottom: 16px; }
+.post-head { gap: 12px; }
+.post-author strong, .composer-author strong { color: var(--ink); font-size: 15px; font-weight: 600; }
+.post-author small, .composer-author small, .post-kind, .post-metrics, .post-metrics > button { color: var(--muted); font-size: 12px; line-height: 18px; }
+.post-kind { padding: 5px 9px; border-radius: 999px; background: var(--surface-soft); }
+.post-copy { margin: 14px 0; color: var(--ink); font-size: 15px; line-height: 22.5px; }
+.post-prayer { border-color: var(--line); }
+.prayer-context { padding: 12px; border-color: var(--line); border-radius: 12px; background: var(--mist); }
+.prayer-icon { width: 36px; height: 36px; border-radius: 10px; color: var(--sky); background: color-mix(in srgb, var(--sky) 12%, var(--surface-raised)); }
+.prayer-context strong { color: var(--ink); font-size: 14px; }
+.prayer-context small, .privacy-pip { color: var(--muted); font-size: 12px; }
+.privacy-pip { min-height: 28px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-raised); }
+.privacy-pip > span { background: var(--status-success); }
+.verse-quote { padding: 16px; border-left: 3px solid var(--sky); border-radius: 0 12px 12px 0; background: var(--mist); }
+.verse-quote strong { color: var(--ink); font-family: 'Lora', Georgia, serif; font-size: 18px; font-weight: 500; line-height: 1.5; }
+.verse-quote small { color: var(--muted); font-size: 12px; }
+.verse-flourish, .amen-dots { color: var(--brass); }
+.post-media { border-radius: 12px; background: var(--surface-soft); }
+.post-media figcaption { color: var(--muted); font-size: 12px; }
+.video-play { background: rgba(20, 40, 64, .72); }
+.testimony-topic { padding: 6px 9px; border-radius: 8px; color: var(--status-success); background: color-mix(in srgb, var(--status-success) 12%, var(--surface-raised)); font-size: 12px; }
+.post-metrics { min-height: 42px; border-color: var(--soft-line); }
+.post-actions { min-height: 52px; gap: 6px; }
+.post-actions button { min-width: 44px; min-height: 44px; padding-inline: 10px; border-radius: 8px; color: var(--muted); font-size: 12px; }
+.post-actions button:hover, .post-actions button.action-on { color: var(--sky); background: var(--mist); }
+.post-actions button.prayer-on { color: var(--sky); background: var(--mist); }
+.amen-icon { color: var(--brass); }
+.comments-panel, .post-metrics { border-color: var(--soft-line); }
+.comment-item p { border-radius: 12px; background: var(--surface-soft); }
+.comment-item strong { color: var(--ink); font-size: 12px; }
+.comment-item p span, .comments-empty { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.comment-form input { min-height: 44px; border-color: var(--line); border-radius: 12px; color: var(--ink); background: var(--surface-control); font-size: 14px; }
+.comment-form button { width: 44px; height: 44px; border-radius: 10px; background: var(--sky); }
+.greeting-card { border-color: var(--line); border-radius: 20px; background: var(--mist); }
+.greeting-card .eyebrow { color: var(--muted); font-size: 12px; }
+.greeting-card h2 { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 20px; font-weight: 600; }
+.greeting-card p { color: var(--muted); font-size: 14px; }
+.greeting-flower { display: none; }
+.quick-compose { min-height: 64px; }
+.quick-compose > span:nth-child(2) { color: var(--muted); font-size: 14px; }
+.compose-attach { color: var(--sky); font-size: 13px; }
+.feed-filter-bar { gap: 16px; border-color: var(--line); }
+.feed-filter-bar button { min-height: 44px; color: var(--muted); font-size: 14px; }
+.feed-filter-bar button.feed-filter-active { border-bottom-color: var(--sky); color: var(--sky); }
+.feed-filter-bar button svg { color: var(--sky); }
+.feed-side-card { padding: 18px; }
+.scripture-side { border-color: var(--line); background: var(--mist); }
+.scripture-side blockquote { font-family: 'Lora', Georgia, serif; font-size: 20px; line-height: 1.5; }
+.scripture-side small, .scripture-side > a { color: var(--muted); font-size: 12px; }
+.side-heading, .feed-community-link strong { color: var(--ink); font-size: 14px; }
+.side-heading a, .feed-community-link small { color: var(--muted); font-size: 12px; }
+.feed-community-link { border-color: var(--soft-line); }
+.gentle-reminder { border-color: var(--line); border-radius: 12px; background: var(--surface-soft); }
+.gentle-reminder p { color: var(--muted); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; }
+.gentle-reminder a, .feed-endnote p { color: var(--muted); font-size: 12px; }
+
+/* Shared page headings, body copy and Figma component geometry */
+.composer-heading h2, .explore-header h2, .settings-intro h2, .personal-intro h2, .profile-summary h2, .community-hero h2, .community-detail-copy h2, .empty-state h3, .privacy-setting-card h3, .dialog-card h2 { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -.025em; }
+.composer-heading h2, .settings-intro h2, .explore-header h2 { font-size: 28px; line-height: 42px; }
+.composer-heading p, .explore-header p, .settings-intro > p, .personal-intro p, .profile-bio, .community-hero p, .community-detail-copy p, .privacy-setting-card p, .safety-card p, .document-intro, .document-content section p, .auth-intro, .auth-aside-copy p, .section-lead, .story-copy p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+.document-page { color: var(--ink); background: var(--paper); }
+.document-nav { border-color: var(--line); }
+.document-content h1 { color: var(--ink); font-size: 36px; line-height: 1.35; }
+.document-content section { border-color: var(--line); }
+.document-content section h2 { color: var(--ink); font-size: 20px; line-height: 30px; }
+.document-content section p { font-size: 15px; line-height: 1.6; }
+.document-callout, .document-end { border-color: var(--line); border-radius: 12px; background: var(--surface-soft); }
+.document-end p { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-style: normal; }
+.auth-page, .auth-main, .onboarding-page { color: var(--ink); background: var(--paper); }
+.auth-main { background: var(--surface-raised); }
+.auth-aside { background: #142840; }
+.auth-aside-copy h2, .auth-form-wrap h1, .onboarding-step h1 { color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-weight: 600; }
+.auth-form-wrap h1, .onboarding-step h1 { font-size: 28px; line-height: 1.4; }
+.auth-form-wrap, .onboarding-card { color: var(--ink); }
+.onboarding-card { border-color: var(--line); border-radius: 20px; }
+.interest-chip.selected, .filter-tab.active, .kind-choice.selected { border-color: color-mix(in srgb, var(--sky) 35%, var(--line)); color: var(--sky); background: var(--mist); }
+.explore-search, .explore-search input { color: var(--ink); background: var(--surface-raised); }
+.community-hero, .personal-intro { border-color: var(--line); border-radius: 20px; background: var(--mist); }
+.profile-cover { border-color: var(--line); }
+.profile-summary, .community-detail-hero, .settings-profile-card, .settings-group, .privacy-setting-card, .notification-list, .moderation-item, .empty-state, .community-card { border-color: var(--line); border-radius: 20px; }
+.settings-row, .notification-item, .community-card-foot, .radio-choice-list label { border-color: var(--soft-line); }
+.settings-icon { color: var(--sky); background: var(--mist); }
+.notification-unread { background: var(--mist); }
+.privacy-warning, .moderation-callout { border-color: color-mix(in srgb, var(--brass) 30%, var(--line)); }
+.settings-signout { min-height: 44px; color: var(--status-danger); font-size: 14px; }
+
+/* Explicit Figma appearance control */
+.appearance-help { margin: 8px 0 14px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.appearance-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.appearance-option { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; color: var(--muted); background: var(--surface-raised); text-align: left; cursor: pointer; transition: border-color .16s, background .16s, color .16s; }
+.appearance-option > span { display: grid; flex: 1; gap: 3px; }
+.appearance-option strong { color: var(--ink); font-size: 14px; }
+.appearance-option small { color: var(--muted); font-size: 12px; }
+.appearance-option.is-selected { border-color: var(--sky); color: var(--sky); background: var(--mist); }
+.appearance-check { flex: 0 0 auto; color: var(--sky); }
+
+/* Explicit dark palette: no automatic OS override and no change to mock-mode boundaries. */
+:root[data-theme='dark'] body,
+:root[data-theme='dark'] .landing-page,
+:root[data-theme='dark'] .document-page,
+:root[data-theme='dark'] .app-shell,
+:root[data-theme='dark'] .onboarding-page { color: var(--ink); background: var(--paper); }
+:root[data-theme='dark'] .landing-nav,
+:root[data-theme='dark'] .landing-footer,
+:root[data-theme='dark'] .side-rail,
+:root[data-theme='dark'] .right-rail,
+:root[data-theme='dark'] .auth-main { background: var(--surface-raised); }
+:root[data-theme='dark'] .app-topbar,
+:root[data-theme='dark'] .document-footer,
+:root[data-theme='dark'] .rail-profile,
+:root[data-theme='dark'] .settings-row,
+:root[data-theme='dark'] .notification-item,
+:root[data-theme='dark'] .community-feed-link { border-color: var(--line); }
+:root[data-theme='dark'] .post-card,
+:root[data-theme='dark'] .quick-compose,
+:root[data-theme='dark'] .composer-card,
+:root[data-theme='dark'] .feed-side-card:not(.scripture-side),
+:root[data-theme='dark'] .empty-state,
+:root[data-theme='dark'] .community-card,
+:root[data-theme='dark'] .profile-summary,
+:root[data-theme='dark'] .profile-edit-card,
+:root[data-theme='dark'] .community-detail-hero,
+:root[data-theme='dark'] .notification-list,
+:root[data-theme='dark'] .settings-group,
+:root[data-theme='dark'] .settings-profile-card,
+:root[data-theme='dark'] .privacy-setting-card,
+:root[data-theme='dark'] .moderation-item,
+:root[data-theme='dark'] .dialog-card,
+:root[data-theme='dark'] .onboarding-card,
+:root[data-theme='dark'] .appearance-option { color: var(--ink); border-color: var(--line); background: var(--surface-raised); }
+:root[data-theme='dark'] .rail-link:hover,
+:root[data-theme='dark'] .rail-link.is-active,
+:root[data-theme='dark'] .notification-unread,
+:root[data-theme='dark'] .greeting-card,
+:root[data-theme='dark'] .prayer-context,
+:root[data-theme='dark'] .verse-quote,
+:root[data-theme='dark'] .scripture-side,
+:root[data-theme='dark'] .community-hero,
+:root[data-theme='dark'] .personal-intro,
+:root[data-theme='dark'] .appearance-option.is-selected { color: var(--ink); border-color: var(--line); background: var(--mist); }
+:root[data-theme='dark'] .rail-note,
+:root[data-theme='dark'] .rail-help-card,
+:root[data-theme='dark'] .story-panel,
+:root[data-theme='dark'] .document-callout,
+:root[data-theme='dark'] .document-end,
+:root[data-theme='dark'] .gentle-reminder,
+:root[data-theme='dark'] .comment-item p,
+:root[data-theme='dark'] .settings-icon { color: var(--muted); border-color: var(--line); background: var(--surface-soft); }
+:root[data-theme='dark'] .field-input,
+:root[data-theme='dark'] .composer-card textarea,
+:root[data-theme='dark'] .dialog-card textarea,
+:root[data-theme='dark'] .comment-form input,
+:root[data-theme='dark'] .explore-search,
+:root[data-theme='dark'] .explore-search input,
+:root[data-theme='dark'] .appearance-option { color: var(--ink); border-color: var(--line); background: var(--surface-control); }
+:root[data-theme='dark'] .app-shell :is(h1, h2, h3, h4, strong, .post-copy, .profile-bio, .community-hero p, .settings-intro p) { color: var(--ink); }
+:root[data-theme='dark'] .app-shell :is(p, small, .eyebrow, .post-author small, .post-metrics, .notification-copy, .settings-row small, .profile-handle) { color: var(--muted); }
+:root[data-theme='dark'] .landing-nav nav a,
+:root[data-theme='dark'] .nav-login,
+:root[data-theme='dark'] .document-content p,
+:root[data-theme='dark'] .document-footer,
+:root[data-theme='dark'] .landing-footer > span,
+:root[data-theme='dark'] .landing-footer > div { color: var(--muted); }
+:root[data-theme='dark'] .mobile-topbar,
+:root[data-theme='dark'] .mobile-bottom-nav { border-color: var(--line); background: color-mix(in srgb, var(--surface-raised) 96%, transparent); }
+:root[data-theme='dark'] .button-outline,
+:root[data-theme='dark'] .button-quiet { color: var(--ink); border-color: var(--line); background: var(--surface-raised); }
+:root[data-theme='dark'] .button-primary { color: #142840; }
+:root[data-theme='dark'] .post-actions button.action-on,
+:root[data-theme='dark'] .post-actions button.prayer-on { color: var(--sky); background: var(--mist); }
+:root[data-theme='dark'] .settings-icon { color: var(--sky); }
+:root[data-theme='dark'] .status-resolved { color: var(--status-success); }
+:root[data-theme='dark'] .status-reviewing { color: var(--sky); }
+:root[data-theme='dark'] .status-received { color: var(--brass); }
+
+@media (max-width: 850px) {
+  .landing-hero { min-height: 390px; gap: 28px; padding: 32px; }
+  .hero-art { min-height: 290px; }
+}
+@media (max-width: 680px) {
+  .landing-hero { width: calc(100% - 24px); gap: 24px; padding: 25px 21px; margin: 5px auto 52px; border-radius: 16px; }
+  .hero-copy h1 { margin: 12px 0; font-size: clamp(36px, 9vw, 48px); line-height: 1.12; }
+  .hero-subtitle { font-size: 15px; line-height: 1.55; }
+  .hero-art { min-height: clamp(220px, 60vw, 320px); margin: 0; border-radius: 12px; }
+  .hero-art > img { border-radius: 12px; }
+  .hero-pill-list { margin-top: 15px; }
+  .hero-actions { align-items: stretch; }
+  .hero-actions .button { min-height: 46px; }
+  .landing-intro h2, .story-copy h2 { font-size: 32px; }
+  .appearance-options { grid-template-columns: 1fr; }
+  .post-card { padding: 16px 14px 0; border-radius: 16px; }
+  .post-copy { font-size: 15px; line-height: 22.5px; }
+  .post-actions { justify-content: space-between; gap: 2px; }
+  .post-actions button { min-width: 40px; padding-inline: 5px; font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Figma component labels and supporting navigation copy remain readable at every viewport. */
+.settings-group > .eyebrow { display: block; margin-bottom: 8px; font-size: 12px; line-height: 18px; }
+.settings-row { min-height: 62px; gap: 12px; }
+.settings-row strong { color: var(--ink); font-size: 14px; line-height: 20px; font-weight: 600; }
+.settings-row small { color: var(--muted); font-size: 12px; line-height: 18px; }
+.settings-profile-card strong { color: var(--ink); font-size: 15px; line-height: 22px; }
+.settings-profile-card small { color: var(--muted); font-size: 12px; line-height: 18px; }
+.rail-label { font-size: 12px; line-height: 18px; }
+.rail-section-title { color: var(--ink); font-size: 14px; }
+.rail-section-title a { color: var(--muted); font-size: 12px; }
+.mini-community strong, .mini-person strong { color: var(--ink); font-size: 12px; line-height: 18px; }
+.mini-community small, .mini-person small { color: var(--muted); font-size: 11px; line-height: 16px; }
+.rail-profile strong { color: var(--ink); font-size: 12px; }
+.rail-profile small { color: var(--muted); font-size: 11px; }
+.rail-help-card > a, .right-foot { font-size: 11px; }
+
+@media (max-width: 680px) {
+  .landing-hero { grid-template-columns: minmax(0, 1fr); }
+  .hero-copy h1 { font-size: clamp(34px, 8.8vw, 42px); }
+  .hero-art { min-height: 230px; margin-top: 0; }
+  .hero-photo-caption { right: 8px; bottom: 8px; left: 8px; font-size: 11px; }
+  .settings-group > .eyebrow { margin-bottom: 8px; }
+}
+
+:root[data-theme='dark'] .settings-row strong,
+:root[data-theme='dark'] .settings-profile-card strong,
+:root[data-theme='dark'] .mini-community strong,
+:root[data-theme='dark'] .mini-person strong,
+:root[data-theme='dark'] .rail-profile strong { color: var(--ink); }
